@@ -12,6 +12,6 @@
 
 
 
-[^1]: "/Dojo/cpp-practice"
+[^1]: (C++)    "/Dojo/cpp-practice"
 [^2]: (Kotlin) "/Dojo/Gradle/grdl-demo-1"
 
