@@ -7,7 +7,7 @@
 ### Table of Contents:
 1. cpp-practice[^1]
 2. Gradle [^2]
-  - grdl-demo-1
+     grdl-demo-1
 
 
 
