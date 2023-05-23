@@ -1,0 +1,57 @@
+t── buildree -I 'utilities|list|build-logic|app/kotlin' " │  └── 
+kotlin │  └── sessions ├── gradle │  └── wrapper │  ├── 
+gradle-wrapper.jar │  └── gradle-wrapper.properties ├── 
+gradle.properties ├── gradlew ├── gradlew.bat ├── 
+settings.gradle.kts └── tree.sh 50 directories, 99 files rbrducki~$cat 
+tree.sh tree -I 'utilities|list|build-logic' rbrducki~$bash tree 
+/opt/homebrew/bin/tree: /opt/homebrew/bin/tree: cannot execute binary file 
+rbrducki~$bash tree/sh bash: tree/sh: No such file or directory 
+rbrducki~$bash tree.sh . ├── app │  ├── build │  │  ├── 
+classes │  │  │  └── kotlin │  │  │  ├── main │  │  │  
+│  ├── META-INF │  │  │  │  │  └── app.kotlin_module │  │  
+│  │  └── grdl │  │  │  │  └── demo │  │  │  │  └── app 
+│  │  │  │  ├── App.class │  │  │  │  ├── AppKt.class │  
+│  │  │  ├── MessageUtils$Companion.class │  │  │  │  └── 
+MessageUtils.class │  │  │  └── test │  │  ├── distributions 
+│  │  │  ├── app.tar │  │  │  └── app.zip │  │  ├── 
+kotlin │  │  │  ├── appjar-classes.txt │  │  │  ├── 
+compileKotlin │  │  │  │  └── cacheable │  │  │  │  ├── 
+caches-jvm │  │  │  │  │  ├── inputs │  │  │  │  │  │  
+├── source-to-output.tab │  │  │  │  │  │  ├── 
+source-to-output.tab.keystream │  │  │  │  │  │  ├── 
+source-to-output.tab.keystream.len │  │  │  │  │  │  ├── 
+source-to-output.tab.len │  │  │  │  │  │  ├── 
+source-to-output.tab.values.at │  │  │  │  │  │  ├── 
+source-to-output.tab_i │  │  │  │  │  │  └── 
+source-to-output.tab_i.len │  │  │  │  │  ├── jvm │  │  │  
+│  │  │  └── kotlin │  │  │  │  │  │  ├── 
+class-attributes.tab │  │  │  │  │  │  ├── 
+class-attributes.tab.keystream │  │  │  │  │  │  ├── 
+class-attributes.tab.keystream.len │  │  │  │  │  │  ├── 
+class-attributes.tab.len │  │  │  │  │  │  ├── 
+class-attributes.tab.values.at │  │  │  │  │  │  ├── 
+class-attributes.tab_i │  │  │  │  │  │  ├── 
+class-attributes.tab_i.len │  │  │  │  │  │  ├── 
+class-fq-name-to-source.tab │  │  │  │  │  │  ├── 
+class-fq-name-to-source.tab.keystream │  │  │  │  │  │  ├── 
+class-fq-name-to-source.tab.keystream.len │  │  │  │  │  │  ├── 
+class-fq-name-to-source.tab.len │  │  │  │  │  │  ├── 
+class-fq-name-to-source.tab.values.at │  │  │  │  │  │  ├── 
+class-fq-name-to-source.tab_i │  │  │  │  │  │  ├── 
+class-fq-name-to-source.tab_i.len │  │  │  │  │  │  ├── 
+internal-name-to-source.tab │  │  │  │  │  │  ├── 
+internal-name-to-source.tab.keystream │  │  │  │  │  │  ├── 
+internal-name-to-source.tab.keystream.len │  │  │  │  │  │  ├── 
+internal-name-to-source.tab.len │  │  │  │  │  │  ├── 
+internal-name-to-source.tab.values.at │  │  │  │  │  │  ├── 
+internal-name-to-source.tab_i │  │  │  │  │  │  ├── 
+internal-name-to-source.tab_i.len │  │  │  │  │  │  ├── 
+package-parts.tab │  │  │  │  │  │  ├── 
+package-parts.tab.keystream │  │  │  │  │  │  ├── 
+package-parts.tab.keystream.len │  │  │  │  │  │  ├── 
+package-parts.tab.len │  │  │  │  │  │  ├── 
+package-parts.tab.values.at │  │  │  │  │  │  ├── 
+package-parts.tab_i │  │  │  │  │  │  ├── package-parts.tab_i.len 
+│  │  │  │  │  │  ├── proto.tab
+  UW PICO 5.09 File: tree.sh Modified tree -I 
+'utilities|list|build-logic|app/kotlin' "
