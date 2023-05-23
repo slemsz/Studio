@@ -12,5 +12,6 @@
 
 
 
-[^1]: example footnote.
-[^2]: example footnote.
+[^1]: "/Dojo/cpp-practice"
+[^2]: "/Dojo/Gradle/grdl-demo-1"
+
