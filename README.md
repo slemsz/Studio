@@ -1,4 +1,4 @@
-# Dojo
+# Studio
 ## Description:
 <sub>
   Misc practice repo containing sandbox projects.
@@ -13,6 +13,6 @@
 
 
 
-[^1]: (C++)    : "/Dojo/Shelf/C++/cpp-practice"
-[^2]: (Kotlin) : "/Dojo/Shelf/Gradle/grdl-demo-1"
-[^3]: (C)      : "/Dojo/Shelf/WASM/c/c-wasm-ex-01"
+[^1]: (C++)    : "/Studio/Shelf/C++/cpp-practice"
+[^2]: (Kotlin) : "/Studio/Shelf/Gradle/grdl-demo-1"
+[^3]: (C)      : "/Studio/Shelf/WASM/c/c-wasm-ex-01"
