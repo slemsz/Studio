@@ -2,6 +2,7 @@ var playing = false;
 var score;
 var action;
 var timeremaining;
+var correctAnswer;
 
 // if we click on the start/reset
 document.getElementById("startreset").onclick =
@@ -25,6 +26,7 @@ document.getElementById("startreset").onclick =
       document.getElementById("timeremainingvalue").innerHTML = timeremaining;
 
       // hide game over box
+      hide("gameOver");
       
       // change button to reset
       document.getElementById("startreset").innerHTML = "Reset Game";
@@ -97,5 +99,29 @@ function show(Id) {
 
 // generate question and multiple answers
 function generateQA() {
+  var x = 1 + Math.round( 9 * Math.random() );
+  var y = 1 + Math.round( 9 * Math.random() );
+  correctAnswer = x * y;
+  document.getElementById("question").innerHTML =
+    x + "x" + y;
+  var correctPosition = 1 + Math.round( 3 * Math.random() );
+  // fill one box with the correct answer
+  document.getElementById("box" + correctPosition).innerHtml = correctAnswer;
+  // fill other boxes with wrong answers
+
+  var answers = [correctAnswer];
   
+  for(i = 1; i < 5; i++) {
+    if (i != correctPosition) {
+      var wrongAnswer;
+
+      do {
+        wrongAnswer =
+          ( 1 + Math.round( 9 * Math.random()  ) )
+          * ( 1 + Math.round( 9 * Math.random() ) );
+      } while( wrongAnswer == correctAnswer )
+      
+      document.getElementById("box"+i).innerHTML = wrongAnswer;
+    }
+  }
 }
