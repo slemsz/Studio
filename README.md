@@ -4,7 +4,8 @@
   Misc practice repo containing sandbox projects.
 </sub>
 
-# Table of Contents:
+## Table of Contents:
+### C++?
 1. cpp-practice [^1]
 2. grdl-demo-1 [^2]
 3. c-wasm-ex-01 [^3]
