@@ -1,0 +1,3 @@
+/Users/rbrducki/Tabletop/git-projs/Studio/Shelf/C++/c-make-demo/ex1/build/CMakeFiles/add.dir
+/Users/rbrducki/Tabletop/git-projs/Studio/Shelf/C++/c-make-demo/ex1/build/CMakeFiles/edit_cache.dir
+/Users/rbrducki/Tabletop/git-projs/Studio/Shelf/C++/c-make-demo/ex1/build/CMakeFiles/rebuild_cache.dir

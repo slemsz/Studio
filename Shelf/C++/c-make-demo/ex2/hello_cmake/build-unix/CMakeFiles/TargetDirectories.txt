@@ -1,0 +1,3 @@
+/Users/rbrducki/Tabletop/git-projs/Studio/Shelf/C++/c-make-demo/ex2/hello_cmake/build-unix/CMakeFiles/hello_age.dir
+/Users/rbrducki/Tabletop/git-projs/Studio/Shelf/C++/c-make-demo/ex2/hello_cmake/build-unix/CMakeFiles/edit_cache.dir
+/Users/rbrducki/Tabletop/git-projs/Studio/Shelf/C++/c-make-demo/ex2/hello_cmake/build-unix/CMakeFiles/rebuild_cache.dir
