@@ -5,18 +5,22 @@
 </sub>
 
 ## Table of Contents:
-### C/
-1. c-wasm-ex-01 [^3]
+
 ### C++/
 2. cpp-practice [^1]
-### Kotlin/
-3. grdl-demo-1 [^2]
+
+### Java/
+
 ### JS/
 4. three-js-proj-1 [^4]
 5. (1) Maths Website (HTML & CSS) [^5]
 6. (2) Maths Game (JS) [^6]
 
+### Python/
 
+### StackSkills/
+
+### WASM/
 
 
 [^1]: (C++)    : "/Studio/Shelf/C++/cpp-practice"
