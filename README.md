@@ -11,15 +11,32 @@
 
 ### Java
 - proj1 [^j00]
-\tHeres a brief description of proj1
+  <sub>
+    Heres a brief description of proj1
+  </sub>
 - proj2 [^j01]
+  <sub>
+    Heres a brief description of proj2
+  </sub>
 - proj3 [^j02]
-
+  <sub>
+    Heres a brief description of proj3
+  </sub>
+  
 ### JS
 - three-js-proj-1 [^js00]
+  <sub>
+    Heres a brief description of three-js-proj-1
+  </sub>
 - (1) Maths Website (HTML & CSS) [^js01]
+  <sub>
+    Heres a brief description of Maths Website
+  </sub>
 - (2) Maths Game (JS) [^js02]
-
+  <sub>
+    Heres a brief description of Maths Game
+  </sub>
+  
 ### Python
 
 ### WASM
