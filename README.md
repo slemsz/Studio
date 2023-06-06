@@ -11,6 +11,7 @@
 
 ### Java
 - proj1 [^j00]
+\tHeres a brief description of proj1
 - proj2 [^j01]
 - proj3 [^j02]
 
