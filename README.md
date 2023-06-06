@@ -7,7 +7,7 @@
 ## Table of Contents:
 
 ### C++
-- cpp-practice [^1]
+- cpp-practice [^cpp.0]
 
 ### Java
 - proj1 [^2]
@@ -24,3 +24,4 @@
 ### WASM
 
 
+[^cpp.0] this link
