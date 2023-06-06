@@ -1,3 +1,6 @@
-module-info.class
+org/openjfx/App$1.class
 org/openjfx/App.class
 org/openjfx/SystemInfo.class
+module-info.class
+org/openjfx/App$2.class
+org/openjfx/App$3.class
