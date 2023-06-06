@@ -6,26 +6,21 @@
 
 ## Table of Contents:
 
-### C++/
-2. cpp-practice [^1]
+### C++
+- cpp-practice [^1]
 
-### Java/
+### Java
+- proj1 [^2]
+- proj2 [^3]
+- proj3 [^4]
 
-### JS/
-4. three-js-proj-1 [^4]
-5. (1) Maths Website (HTML & CSS) [^5]
-6. (2) Maths Game (JS) [^6]
+### JS
+- three-js-proj-1 [^5]
+- (1) Maths Website (HTML & CSS) [^6]
+- (2) Maths Game (JS) [^7]
 
-### Python/
+### Python
 
-### StackSkills/
-
-### WASM/
+### WASM
 
 
-[^1]: (C++)    : "/Studio/Shelf/C++/cpp-practice"
-[^2]: (Kotlin) : "/Studio/Shelf/Gradle/grdl-demo-1"
-[^3]: (C)      : "/Studio/Shelf/WASM/c/c-wasm-ex-01"
-[^4]: (JS, HTML) : "/Studio/Shelf/Node/three-js-proj-1"
-[^5]: (HTML, CSS) : "/Studio/Shelf/StackSkills/course-WebDevBootcamp/Projects/1.Maths\ Website\ \(HTML\ \&\ CSS\)"
-[^6]: (HTML, CSS, JS) : "/Studio/Shelf/StackSkills/course-WebDevBootcamp/Projects/2.Maths\ Game\ \(JS\)"
