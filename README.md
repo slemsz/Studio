@@ -23,7 +23,7 @@
 
 ### WASM
 
-[^cpp00]: first link
+[^cpp00]: Studio/Shelf/C++/cpp-practice
 [^j00]: Studio/Shelf/Java/Projects/proj1
 [^j01]: Studio/Shelf/Java/Projects/proj2
 [^j02]: Studio/Shelf/Java/Projects/proj3
