@@ -11,7 +11,7 @@ public class Tree {
     private int fileCount;
 
     public static void main(String[] args) {
-        String directory = ".";
+        String directory = "..";
         if (args.length > 0) {
             directory = args[0];
         }
@@ -62,5 +62,4 @@ public class Tree {
             }
         }
     }
-
 }

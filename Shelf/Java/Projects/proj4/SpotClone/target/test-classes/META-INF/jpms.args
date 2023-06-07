@@ -1,0 +1,4 @@
+--patch-module
+SpotClone.app=_
+--add-reads
+SpotClone.app=ALL-UNNAMED
