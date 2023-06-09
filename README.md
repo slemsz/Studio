@@ -42,7 +42,10 @@
   </sub>
   
 ### Python
-
+- madmax [^py00]
+  <sub>
+    Heres a brief description of madmax
+  </sub>
 ### WASM
 
 [^cpp00]: Studio/Shelf/C++/cpp-practice
@@ -53,6 +56,6 @@
 [^js00]: Studio/Shelf/JS/Node/three-js-proj-1
 [^js01]: Studio/Shelf/StackSkills/course-WebDevBootcamp/Projects/1.Maths\ Website\ \(HTML\ \&\ CSS\) 
 [^js02]: Studio/Shelf/StackSkills/course-WebDevBootcamp/Projects/2.Maths\ Game\ \(JS\) 
-
+[^py00]: Studio/Shelf/Python/DisBot/madmax
 
 
