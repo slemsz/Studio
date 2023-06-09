@@ -1,23 +1,12 @@
 import discord
-from jproperties import Properties
 import logging
 import os
 
-from base import *
-from constants import *
+from base import Message, Conversation
+from constants import generate_constants
+import json
+import requests
 from utils import *
-
-
-def configure_constants():
-    configs = Properties()
-    with open('resources/config.properties', 'rb') as config_file:
-        configs.load(config_file)
-    try:
-        token = configs["TOKEN"].data
-        return token
-    except KeyError as ke:
-        print(f'{ke}, lookup key was "token"')
-        return null
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -29,35 +18,29 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+def get_quote():
+    response = requests.get("https://zenquotes.io/api/random")
+    json_data = json.loads(response.text)
+    quote = json_data[0]['q'] + " -" + json_data[0]['a']
+    return(quote)
+
 @client.event
 async def on_ready():
     logger.info(f"We have logged in as {client.user}.")
-
 
 @client.event
 async def on_message(message: DiscordMessage):
     try:
         if message.author == client.user:
             return
-        channel = message.channel
-        if not isinstance(channel, discord.Thread):
-            return
-        thread = channel
-        if thread.owner_id != client.user.id:
-            return
-        ###
-        ###
-        ###
 
+        if message.content.startswith('$hello'):
+            quote = get_quote();
+            await message.channel.send(quote)
 
     except Exception as e:
         logger.exception(e)
 
 
-
-
-def main():
-    discord_token = configure_constants()
-    client.run(discord_token)
-
-main()
+dscrd_bot_token, dscrd_bot_url = generate_constants()
+client.run(dscrd_bot_token)
