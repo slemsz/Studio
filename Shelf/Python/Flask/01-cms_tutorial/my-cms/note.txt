@@ -1,0 +1,2 @@
+## include snippets from 
+https://learnpurpose.hashnode.dev/manage-your-content-create-a-custom-cms-with-python-and-flask-part-8-of-webdev-series
