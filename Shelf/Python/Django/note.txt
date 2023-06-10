@@ -1,0 +1,6 @@
+#/Django/note.txt
+
+snippets from the directory 'my_ecommerce_site' are from the following source:
+	
+https://learnpurpose.hashnode.dev/build-your-online-store-create-an-e-commerce-site-with-python-and-django-part=6-of-webdev-series
+
