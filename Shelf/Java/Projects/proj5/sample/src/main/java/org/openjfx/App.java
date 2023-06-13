@@ -7,7 +7,9 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.Scene;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
@@ -18,6 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.DirectoryChooser;
@@ -41,6 +44,7 @@ public class App extends Application
     public static final String Y_URL = "http://yahoo.com";
 
     WebView webView;
+    List<WebView> webViews;
     VBox vBox;
     HBox root;
     HBox footer;
@@ -50,29 +54,69 @@ public class App extends Application
     Button tabButton;
     String url;
     TabPane tabPane;
+    Button optionButton;
+    Button execButton;
+    Canvas canvas;
+    GraphicsContext gc;
 
+    /**
+     * (i)    Initialize {@code root} with a {@code HBox} object.
+     * (ii)   Initialize {@code footer} with a {@code HBox} object.
+     * (iii)  Initialize {@code footerLabel} with a {@code Label} object.
+     * (iv)   Initialize {@code vBox} with a {@code VBox} object.
+     * (v)    Initialize {@code searchBarField} with a {@code TextField} object.
+     *         Sets the default text to :url.
+     * (vi)   Initialize
+     * (vii)  Initialize
+     * (viii) Set
+     * (ix)   Initialize
+     * (x)    Initialize
+     */
     public App()
     {
         root = new HBox();
         footer = new HBox();
         footerLabel = new Label();
         vBox = new VBox();
-        searchBarField = new TextField(":url");
+        searchBarField = new TextField(G_URL);
+        execButton = new Button("::exec::");
         findButton = new Button("Hello:");
         tabButton = new Button("Tab");
+        optionButton = new Button("Options");
         url = G_URL;
         tabPane = new TabPane();
         webView = new WebView();
+
+        canvas = new Canvas(250,250);
+        gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLUE);
+        gc.fillRect(75, 75, 100, 100);
     }
+
 
     @Override
     public void start(Stage stage)
     {
         stage.setTitle("WebView test");
-        footer.getChildren().add(this.footerLabel);
-        root.getChildren().add(new HBox(this.searchBarField, this.findButton, this.tabButton));
-        this.vBox = new VBox(this.root, this.tabPane, this.footer);
+        footer.getChildren().add( new HBox(
+                            this.optionButton,
+                            this.footerLabel));
+
+        root.getChildren().add( new HBox(
+                            this.execButton,
+                            this.searchBarField,
+                            this.findButton,
+                            this.tabButton));
+
+        this.vBox = new VBox(
+                this.root,
+                this.tabPane,
+                this.footer);
+
         handleTabButton();
+
+
+
         Scene scene = new Scene(this.vBox, 960, 600);
         stage.setScene(scene);
         stage.setResizable(true);
@@ -83,7 +127,7 @@ public class App extends Application
      * Overrides javafx.application.Application.init method.
      * Contains event handlers for components within the scene graph.
      * (1) Set action for Button findButton.
-     *  (1.a) Print confirmation of activation.
+     *  (1.a) Verify button press.
      *  (1.b) Method call to handleFindButton();
      * (2) Set action for Button tabButton.
      *  (2.a) Print confirmation of activation.
@@ -93,14 +137,19 @@ public class App extends Application
     public void init()
     {
         this.findButton.setOnAction( event -> {
-                System.out.println("(Button)findButton pressed.");
-                handleFindButton();
-            } );
+            System.out.println("(Button)findButton pressed.");
+            handleFindButton();
+        } );
 
         this.tabButton.setOnAction( event -> {
-                System.out.println("(Button)tabButton pressed.");
-                handleTabButton();
-            } );
+            System.out.println("(Button)tabButton pressed.");
+            handleTabButton();
+        } );
+
+        this.execButton.setOnAction( event -> {
+            System.out.println("(Button)executeButton pressed.");
+            handleExecButton();
+        } );
     }
 
     /**
@@ -132,14 +181,29 @@ public class App extends Application
      * Takes nothing and returns nothing.
      * Updates variables within scope.
      * (1) Adds a tab to the tabPane object.
-     * (2) Load to the scene graph.
+     * (2) Edit List of WebView Objects.
+     *  (2.a) Add new webView Object to List
+     * (3) Add a new Tab to the TabPane.
+     * (4) Load the tabPane to the scene graph.
      */
     public void handleTabButton()
     {
-        this.tabPane.getTabs().add(new Tab("Home", new Label("Browser Home")));
+        this.webView.getEngine().load(G_URL);
+        this.tabPane.getTabs().add(new Tab("Home", new VBox(this.webView)));
         Platform.runLater( () -> {
                 this.vBox.getChildren().add(tabPane);
             });
+    }
+
+    /**
+     * Test button for the purpose of running dev experiments.
+     * (1) Verify method call.
+     * (2) Call test method.
+     */
+    public void handleExecButton()
+    {
+        System.out.println("App.handleExecButton() called.");
+        
     }
 
 }
