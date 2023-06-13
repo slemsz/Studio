@@ -69,21 +69,26 @@ public class App extends Application
     public void start(Stage stage)
     {
         stage.setTitle("WebView test");
-
         footer.getChildren().add(this.footerLabel);
-
         root.getChildren().add(new HBox(this.searchBarField, this.findButton, this.tabButton));
-
         this.vBox = new VBox(this.root, this.tabPane, this.footer);
-
         handleTabButton();
-
         Scene scene = new Scene(this.vBox, 960, 600);
-
         stage.setScene(scene);
+        stage.setResizable(true);
         stage.show();
     }
 
+    /**
+     * Overrides javafx.application.Application.init method.
+     * Contains event handlers for components within the scene graph.
+     * (1) Set action for Button findButton.
+     *  (1.a) Print confirmation of activation.
+     *  (1.b) Method call to handleFindButton();
+     * (2) Set action for Button tabButton.
+     *  (2.a) Print confirmation of activation.
+     *  (2.b) Method call to handleTabButton();
+     */
     @Override
     public void init()
     {
@@ -98,19 +103,43 @@ public class App extends Application
             } );
     }
 
+    /**
+     * Takes nothing and returns nothing.
+     * Updates variables within scope.
+     * Alters Scene graph.
+     * In order:
+     *  (1) {@code url} takes the value of the text contained within (TextField)searchBarField.
+     *  (2) Display current URL location at the bottom of the gui viewer.
+     *  (3) Load URL.
+     *  (4) Set displayed url text.
+     *  (5) Load to scene graph.
+     * Specifically:
+     *      handles the actionEvent of the findButton Button.
+     */
     public void handleFindButton()
     {
         this.url = this.searchBarField.getText().toString();
         this.footer.getChildren().add(new Label(this.url));
-        this.webView.getEngine().load(url);
-        this.webView.getEngine().getLocation();
+        this.webView.getEngine().load(this.url);
+        //this.webView.getEngine().getLocation();
         this.searchBarField.setText(":url");
+        Platform.runLater(() -> {
+            this.tabPane.getTabs().add(new Tab("WebView", new VBox(this.webView)));
+        });
     }
 
+    /**
+     * Takes nothing and returns nothing.
+     * Updates variables within scope.
+     * (1) Adds a tab to the tabPane object.
+     * (2) Load to the scene graph.
+     */
     public void handleTabButton()
     {
         this.tabPane.getTabs().add(new Tab("Home", new Label("Browser Home")));
-        Platform.runLater(()->this.vBox.getChildren().add(tabPane));
+        Platform.runLater( () -> {
+                this.vBox.getChildren().add(tabPane);
+            });
     }
 
 }
