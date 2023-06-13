@@ -86,7 +86,6 @@ public class App extends Application
         url = G_URL;
         tabPane = new TabPane();
         webView = new WebView();
-
         canvas = new Canvas(250,250);
         gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLUE);
@@ -195,6 +194,18 @@ public class App extends Application
             });
     }
 
+
+    /**
+     * Test Method:
+     * (1) Verify method call.
+     * 
+     */
+    public void test() {
+        System.out.println("App.test() method called.");
+
+    }
+
+
     /**
      * Test button for the purpose of running dev experiments.
      * (1) Verify method call.
@@ -203,7 +214,7 @@ public class App extends Application
     public void handleExecButton()
     {
         System.out.println("App.handleExecButton() called.");
-        
+
     }
 
 }
