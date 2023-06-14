@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.Scene;
@@ -70,11 +71,15 @@ public class App extends Application
 
     String url;
     Tab sampleTab;
+    Tab sampleTab_01;
+    Tab sampleTab_02;
     TabPane tabPane;
     VBox tabPaneBox;
     HashSet<Tab> tabs; /// implement me
 
+    GridPane gridPane;
     VBox sideBar;
+    Label sideBarLabel;
     List<Node> sideBarComponents;
     Button showSideBar;
 
@@ -115,12 +120,14 @@ public class App extends Application
         sampleButton = new Button("Sample");
         execButton = new Button("::exec::");
         findButton = new Button("Hello:");
-        tabButton = new Button("Tab");
+        tabButton = new Button("New Tab");
         optionButton = new Button("Options");
 
         url = G_URL;
 
         sampleTab = new Tab();
+        sampleTab_01 = new Tab("Tab");
+        sampleTab_02 = new Tab("Tab");
         tabPane = new TabPane();
         tabPaneBox = new VBox();
         tabs = new HashSet<Tab>();
@@ -128,18 +135,20 @@ public class App extends Application
         webView = new WebView();
         webViews = new ArrayList<>();
 
-        sideBar = new VBox();
+        gridPane = new GridPane();
+        sideBar = new VBox(8);
+        sideBarLabel = new Label("( Sidebar )");
         sideBarComponents = new ArrayList<>();
-        showSideBar = new Button("show");
+        showSideBar = new Button("Show");
 
         canvas = new Canvas(350,350);
         gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLUE);
         gc.fillRect(75, 75, 100, 100);
 
-        canvas_01 = new Canvas(250, 250);
+        canvas_01 = new Canvas(50, 50);
         gc_01 = canvas_01.getGraphicsContext2D();
-        gc_01.setFill(Color.BLUE);
+        gc_01.setFill(Color.RED);
         gc_01.fillRect(75, 75, 100, 100);
 
     }
@@ -162,6 +171,14 @@ public class App extends Application
             System.out.println("(Button) showSideBar pressed.");
             handleShowSideBar();
         });
+
+        fillBody();
+
+        this.tabButton.setOnAction( event -> {
+            System.out.println("(Button) tabButton pressed.");
+            handleTabButton();
+        });
+
     }
 
     @Override
@@ -169,35 +186,91 @@ public class App extends Application
     {
         stage.setTitle("WebView test");
 
-        fillBody();
-
         this.vBox = new VBox(
                 this.root,
                 this.body,
                 this.footer);
 
-        Scene scene = new Scene(this.vBox, 550, 600);
+        Scene scene = new Scene(vBox, 550, 600);
         stage.setScene(scene);
         stage.setResizable(true);
         stage.show();
     }
 
+    public void handleTabButton()
+    {
+        System.out.println("(Method) App.handleTabButton() called.");
+        this.tabPane.getTabs().add(newTabInit());
+    }
+
+    public Tab newTabInit()
+    {
+        System.out.println("(Method) App.newTabInit() called.");
+        VBox tabContent = new VBox();
+        GridPane gp = new GridPane();
+        gp.add(canvas_01, 0, 0);
+        gp.add(findButton, 1, 1);
+
+        tabContent.getChildren().add(gp);
+        tabContent.getChildren().add(new Button("FUCK"));
+        Tab tab = new Tab("Home", tabContent);
+        return tab;
+    }
+
     /**
-     * Called from App.start(..)
+     * Called from App.init(..)
      */
     public void fillBody()
     {
-        this.sideBar = new VBox(new Label("label"), new Button("button"));
-        this.sampleTab = new Tab("canvas", canvas);
-        this.tabPane.getTabs().add(sampleTab);
-        this.tabPaneBox.getChildren().addAll(showSideBar, tabPane);
-        this.bodyContent.getChildren().addAll(sideBar, tabPaneBox);
+        this.body.setFillWidth(true);
+        sideBarInit();
+        tabPaneBoxInit();
+        this.bodyContent.getChildren().addAll(tabPaneBox);
         this.body.getChildren().add(bodyContent);
     }
 
-    public void handleShowSideBar() {
+    public void handleShowSideBar()
+    {
         System.out.println("(Method) App.handleShowSideBar() called. ");
+        switch( this.showSideBar.getText() ) {
+            case "Hide":
+                this.showSideBar.setText("Show");
+                this.tabPaneBox.setPrefWidth(this.tabPaneBox.getWidth() + 100);
+                this.bodyContent.getChildren().clear();
+                this.bodyContent.getChildren().add(tabPaneBox);
+                break;
+            default:
+                this.showSideBar.setText("Hide");
+                this.tabPaneBox.setPrefWidth(this.tabPaneBox.getWidth() - 100);
+                this.bodyContent.getChildren().clear();
+                this.bodyContent.getChildren().addAll(sideBar, tabPaneBox);
+        }
     }
+
+    public void sideBarInit()
+    {
+        this.gridPane.setMinHeight(565);
+        this.gridPane.add(tabButton, 0, 0);
+        this.gridPane.add(sampleButton, 0, 1);
+        this.gridPane.add(execButton, 0, 2);
+        this.gridPane.setVgap(10);
+        this.gridPane.setAlignment(Pos.BASELINE_CENTER);
+        VBox vBox_01 = new VBox(sideBarLabel);
+        vBox_01.setAlignment(Pos.BOTTOM_CENTER);
+        this.sideBar.getChildren().addAll(gridPane, vBox_01);
+        this.sideBar.setMinWidth(100);
+    }
+
+    public void tabPaneBoxInit()
+    {
+        this.sampleTab = new Tab("canvas", canvas);
+        this.tabPane.setCenterShape(true);
+        this.tabPane.getTabs().add(sampleTab);
+        this.tabPaneBox.setPrefWidth(550);
+        this.tabPaneBox.setFillWidth(true);
+        this.tabPaneBox.getChildren().addAll(showSideBar, tabPane);
+    }
+
 
 
 
