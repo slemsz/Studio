@@ -56,6 +56,7 @@ public class App extends Application
     VBox vBox;
     VBox testVBox;
     HBox root;
+    VBox body;
     HBox footer;
     Label footerLabel;
     TextField searchBarField;
@@ -63,13 +64,16 @@ public class App extends Application
     Button tabButton;
     String url;
     TabPane tabPane;
+    HBox tabPaneBox;
     HashSet<Tab> tabs; /// implement me
     Button optionButton;
     Button execButton;
     Canvas canvas;
+    Canvas canvas_01;
     VBox sideBar;
     List<Node> sideBarComponents;
     GraphicsContext gc;
+    GraphicsContext gc_01;
 
     /**
      * (i)    Initialize {@code root} with a {@code HBox} object.
@@ -90,6 +94,7 @@ public class App extends Application
         sampleButton = new Button();
 
         root = new HBox();
+        body = new VBox();
 
         footer = new HBox();
         footerLabel = new Label();
@@ -107,9 +112,11 @@ public class App extends Application
         url = G_URL;
 
         tabPane = new TabPane();
+        tabPaneBox = new HBox(tabPane);
         tabs = new HashSet<Tab>();
 
         webView = new WebView();
+        webViews = new ArrayList<>();
 
         sideBar = new VBox();
         sideBarComponents = new ArrayList<>();
@@ -118,28 +125,34 @@ public class App extends Application
         gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLUE);
         gc.fillRect(75, 75, 100, 100);
+
+        canvas_01 = new Canvas(250, 250);
+        gc_01 = canvas_01.getGraphicsContext2D();
+        gc_01.setFill(Color.BLUE);
+        gc_01.fillRect(75, 75, 100, 100);
+
     }
 
     @Override
     public void start(Stage stage)
     {
         stage.setTitle("WebView test");
-        footer.getChildren().add( new HBox(
+        this.footer.getChildren().add( new HBox(
                             this.optionButton,
                             this.footerLabel));
 
-        root.getChildren().add( new HBox(
+        this.root.getChildren().add( new HBox(
                             this.execButton,
                             this.searchBarField,
                             this.findButton,
                             this.tabButton));
 
+        this.body.getChildren().add( this.tabPaneBox );
+
         this.vBox = new VBox(
                 this.root,
-                this.tabPane,
+                this.body,
                 this.footer);
-
-        handleTabButton();
 
 
 
@@ -162,6 +175,7 @@ public class App extends Application
     @Override
     public void init()
     {
+
         this.findButton.setOnAction( event -> {
             System.out.println("(Button) findButton pressed.");
             handleFindButton();
@@ -176,6 +190,11 @@ public class App extends Application
             System.out.println("(Button) executeButton pressed.");
             handleExecButton();
         } );
+
+        this.optionButton.setOnAction( event -> {
+            System.out.println("(Button) optionsButton pressed.");
+            test();
+        });
     }
 
     /**
@@ -215,11 +234,8 @@ public class App extends Application
     public void handleTabButton()
     {
         this.webView.getEngine().load(G_URL);
-        this.tabPane.getTabs().add(new Tab("Home", new VBox(this.webView)));
-        Platform.runLater( () ->
-            {
-                this.vBox.getChildren().add(tabPane);
-            });
+        this.tabs.add(new Tab("Home", this.body));
+        loadTabs();
     }
 
     /**
@@ -231,6 +247,7 @@ public class App extends Application
     {
         System.out.println("(Method) App.handleExecButton() called.");
         //test();
+        //loadTabs();
         test_origin_scene();
     }
 
@@ -259,8 +276,9 @@ public class App extends Application
 
         Platform.runLater(() ->
         {
-            this.vBox.getChildren().clear();
-            this.vBox.getChildren().add(tabPane);
+            this.body.getChildren().clear();
+            this.tabPaneBox.getChildren().add(tabPane);
+            this.body.getChildren().add(this.tabPaneBox);
             System.out.println("New Task");
         });
     }
@@ -273,16 +291,15 @@ public class App extends Application
         this.sampleButton.setPrefWidth(65);
         this.sampleButton.setAlignment(Pos.TOP_CENTER);
 
-
-
-        loadImage("burger").ifPresent(img -> {
-            runThread(() -> this.sampleButton.setGraphic(new ImageView(img)));
-        });
-
         Platform.runLater(() ->
         {
-            this.tabPane.getTabs().add(new Tab("uhh", this.sampleButton));
+            change_canvas_color(gc_01);
+            this.tabPane.getTabs().add(new Tab("uhh", new HBox(this.canvas, this.canvas_01)));
         });
+    }
+
+    public void change_canvas_color(GraphicsContext scope) {
+        scope.setFill(Color.RED);
     }
 
     public Optional<Image> loadImage(String imageName) {
@@ -291,7 +308,6 @@ public class App extends Application
         {
             img = new Image("file:/resources/icons/burger.png");
             System.out.println("Image Found");
-
             return Optional.<Image>ofNullable(img);
         }
         catch (Exception e) {
@@ -311,7 +327,7 @@ public class App extends Application
      * values in the HashSet {@code tabs}.
      */
     public void loadTabs() {
-        System.out.println("Not yet implemented.");
+        System.out.println("Tabs loaded.");
     }
 
 }
