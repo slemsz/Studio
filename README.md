@@ -32,7 +32,12 @@
   
     Maven & Javafx. 
   </sub>
+- proj6 [^j05]
+  <sub>
+    (Better) Sample GUI Project.
   
+    Maven & Javafx. 
+  </sub>
 ### JS
 - three-js-proj-1 [^js00]
   <sub>
@@ -60,6 +65,8 @@
 [^j02]: Studio/Shelf/Java/Projects/proj3
 [^j03]: Studio/Shelf/Java/Projects/proj4
 [^j04]: Studio/Shelf/Java/Projects/proj5
+[^j05]: Studio/Shelf/Java/Projects/proj6
+
 [^js00]: Studio/Shelf/JS/Node/three-js-proj-1
 [^js01]: Studio/Shelf/StackSkills/course-WebDevBootcamp/Projects/1.Maths\ Website\ \(HTML\ \&\ CSS\) 
 [^js02]: Studio/Shelf/StackSkills/course-WebDevBootcamp/Projects/2.Maths\ Game\ \(JS\) 
