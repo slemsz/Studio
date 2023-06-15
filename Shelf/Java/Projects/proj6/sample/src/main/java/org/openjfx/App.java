@@ -51,6 +51,9 @@ public class App extends Application
     public static final String G_URL = "http://google.com";
     public static final String Y_URL = "http://yahoo.com";
     Image burger_img;
+    Image www_img;
+    Image tab_img;
+    Image book_img;
     Button sampleButton;
 
     WebView webView;
@@ -76,9 +79,11 @@ public class App extends Application
     TabPane tabPane;
     VBox tabPaneBox;
     HashSet<Tab> tabs; /// implement me
+    GridPane gp;
 
     GridPane gridPane;
     VBox sideBar;
+    Boolean isSideBarShowing;
     Label sideBarLabel;
     List<Node> sideBarComponents;
     Button showSideBar;
@@ -103,8 +108,10 @@ public class App extends Application
      */
     public App()
     {
-        burger_img = new Image("file:resources/icons/burger.png");
-
+        burger_img = new Image("https://img.icons8.com/color/48/menu--v1.png", 20, 20, false, false);
+        www_img = new Image("https://img.icons8.com/ios/50/domain--v1.png");
+        tab_img = new Image("https://img.icons8.com/color/48/add-tab.png",25, 25, false, false);
+        book_img = new Image("https://img.icons8.com/fluency/48/comic-book.png", 25, 25, false, false);
         root = new HBox();
         body = new VBox();
         bodyContent = new HBox();
@@ -120,7 +127,7 @@ public class App extends Application
         sampleButton = new Button("Sample");
         execButton = new Button("::exec::");
         findButton = new Button("Hello:");
-        tabButton = new Button("New Tab");
+        tabButton = new Button();
         optionButton = new Button("Options");
 
         url = G_URL;
@@ -131,24 +138,26 @@ public class App extends Application
         tabPane = new TabPane();
         tabPaneBox = new VBox();
         tabs = new HashSet<Tab>();
+        gp = new GridPane();
 
         webView = new WebView();
         webViews = new ArrayList<>();
 
         gridPane = new GridPane();
         sideBar = new VBox(8);
+        isSideBarShowing = false;
         sideBarLabel = new Label("( Sidebar )");
         sideBarComponents = new ArrayList<>();
-        showSideBar = new Button("Show");
+        showSideBar = new Button();
 
         canvas = new Canvas(350,350);
         gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLUE);
         gc.fillRect(75, 75, 100, 100);
 
-        canvas_01 = new Canvas(50, 50);
+        canvas_01 = new Canvas(350, 350);
         gc_01 = canvas_01.getGraphicsContext2D();
-        gc_01.setFill(Color.RED);
+        gc_01.setFill(Color.BLUE);
         gc_01.fillRect(75, 75, 100, 100);
 
     }
@@ -179,6 +188,20 @@ public class App extends Application
             handleTabButton();
         });
 
+        this.findButton.setOnAction( event -> {
+            System.out.println("(Button) findButton pressed.");
+            handleFindButton();
+        });
+
+        this.sampleButton.setOnAction( event -> {
+            System.out.println("(Button) sampleButton pressed.");
+            handleSampleButton();
+        });
+
+        this.execButton.setOnAction( event -> {
+            System.out.println("(Button) execButton pressed.");
+            handleExecButton();
+        });
     }
 
     @Override
@@ -188,13 +211,47 @@ public class App extends Application
 
         this.vBox = new VBox(
                 this.root,
-                this.body,
-                this.footer);
+                this.body
+                /*this.footer*/);
 
         Scene scene = new Scene(vBox, 550, 600);
         stage.setScene(scene);
         stage.setResizable(true);
         stage.show();
+    }
+
+    public void generateAppBooklet() {
+        System.out.println("(Method) App.generateAppBooklet() called.");
+        VBox bookletContent = new VBox();
+        String bookletContentCss = "-fx-border-color:black;\n" +
+                                   "-fx-alignment: center;\n" +
+                                   "-fx-hgrow: true;\n";
+
+        bookletContent.setStyle(bookletContentCss);
+        bookletContent.getChildren().add(new ImageView(burger_img));
+        this.tabPane.getTabs().add(new Tab("tab",bookletContent));
+    }
+
+    public void handleExecButton() {
+        System.out.println("(Method) App.handleExecButton() called.");
+        generateAppBooklet();
+    }
+
+    public void handleSampleButton() {
+        System.out.println("(Method) App.handleSampleButton() called.");
+        Platform.runLater(() -> {
+            this.webView.getEngine().load(G_URL);
+            this.tabPane.getTabs().add(new Tab("web", this.webView));
+        });
+    }
+
+    public void handleFindButton() {
+        System.out.println("(Method) App.handleFindButton() called.");
+        String searchText = this.searchBarField.getText();
+        Platform.runLater(() -> {
+            this.gp.add(new ImageView(new Image(searchText)), 0, 3);
+
+        });
     }
 
     public void handleTabButton()
@@ -207,12 +264,11 @@ public class App extends Application
     {
         System.out.println("(Method) App.newTabInit() called.");
         VBox tabContent = new VBox();
-        GridPane gp = new GridPane();
-        gp.add(canvas_01, 0, 0);
-        gp.add(findButton, 1, 1);
-
+        this.gp.getChildren().clear();
+        this.gp.add(canvas_01, 0, 0);
+        this.gp.add(findButton, 0, 2);
+        this.gp.add(searchBarField, 0, 1);
         tabContent.getChildren().add(gp);
-        tabContent.getChildren().add(new Button("FUCK"));
         Tab tab = new Tab("Home", tabContent);
         return tab;
     }
@@ -232,33 +288,56 @@ public class App extends Application
     public void handleShowSideBar()
     {
         System.out.println("(Method) App.handleShowSideBar() called. ");
-        switch( this.showSideBar.getText() ) {
-            case "Hide":
-                this.showSideBar.setText("Show");
-                this.tabPaneBox.setPrefWidth(this.tabPaneBox.getWidth() + 100);
-                this.bodyContent.getChildren().clear();
-                this.bodyContent.getChildren().add(tabPaneBox);
-                break;
-            default:
-                this.showSideBar.setText("Hide");
-                this.tabPaneBox.setPrefWidth(this.tabPaneBox.getWidth() - 100);
-                this.bodyContent.getChildren().clear();
-                this.bodyContent.getChildren().addAll(sideBar, tabPaneBox);
+        if ( isSideBarShowing ) {
+            this.isSideBarShowing = false;
+            this.tabPaneBox.setPrefWidth(this.tabPaneBox.getWidth() + 100);
+            this.bodyContent.getChildren().clear();
+            this.bodyContent.getChildren().add(tabPaneBox);
+        } else {
+            this.isSideBarShowing = true;
+            this.tabPaneBox.setPrefWidth(this.tabPaneBox.getWidth() - 100);
+            this.bodyContent.getChildren().clear();
+            this.bodyContent.getChildren().addAll(sideBar, tabPaneBox);
+
         }
     }
 
     public void sideBarInit()
     {
-        this.gridPane.setMinHeight(565);
+        this.gridPane.setAlignment(Pos.BASELINE_CENTER);
+
+        String styleGridCss = "-fx-background-color: honeydew;\n" +
+                              "-fx-vgap: 10;\n"+
+                              "-fx-hgap: 10;\n" +
+                              "-fx-padding: 10 20 10 20;\n";
+
+        this.gridPane.setStyle(styleGridCss);
+        this.gridPane.setMinHeight(570);
+
+        String tabButtonCss = "-fx-alignment: baseline-center;\n";
+        this.tabButton.setStyle(tabButtonCss);
+        this.tabButton.setGraphic(new ImageView(tab_img));
         this.gridPane.add(tabButton, 0, 0);
-        this.gridPane.add(sampleButton, 0, 1);
+
+        this.sampleButton.setGraphic(new ImageView(www_img));
+        this.sampleButton.setText(null);
+        this.sampleButton.setAlignment(Pos.CENTER);
+        this.gridPane.add(new HBox(sampleButton), 0, 1);
+
+        this.execButton.setText(null);
+        this.execButton.setGraphic(new ImageView(book_img));
         this.gridPane.add(execButton, 0, 2);
-        this.gridPane.setVgap(10);
         this.gridPane.setAlignment(Pos.BASELINE_CENTER);
         VBox vBox_01 = new VBox(sideBarLabel);
+
+        String sideBarCss = "-fx-border-color: black ;\n" +
+                            "-fx-border-width: 2;\n";
+
+        this.sideBar.setStyle(sideBarCss);
+
         vBox_01.setAlignment(Pos.BOTTOM_CENTER);
         this.sideBar.getChildren().addAll(gridPane, vBox_01);
-        this.sideBar.setMinWidth(100);
+        this.sideBar.setFillWidth(true);
     }
 
     public void tabPaneBoxInit()
@@ -268,6 +347,7 @@ public class App extends Application
         this.tabPane.getTabs().add(sampleTab);
         this.tabPaneBox.setPrefWidth(550);
         this.tabPaneBox.setFillWidth(true);
+        this.showSideBar.setGraphic(new ImageView(burger_img));
         this.tabPaneBox.getChildren().addAll(showSideBar, tabPane);
     }
 
