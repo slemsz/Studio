@@ -24,7 +24,7 @@
   </sub>
 - proj4 [^j03]
   <sub>
-    Heres a bried description of proj4
+    Heres a brief description of proj4
   </sub>
 - proj5 [^j04]
   <sub>
