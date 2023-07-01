@@ -58,6 +58,11 @@
     Heres a brief description of madmax
   </sub>
 ### WASM
+### Rust
+- rust_lang_book
+  <sub>
+  yes chef
+  </sub>
 
 [^cpp00]: Studio/Shelf/C++/cpp-practice
 [^j00]: Studio/Shelf/Java/Projects/proj1
