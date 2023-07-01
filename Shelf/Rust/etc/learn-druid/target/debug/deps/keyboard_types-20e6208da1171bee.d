@@ -1,0 +1,10 @@
+/Users/rbrducki/Utopia/git-projs/Studio/Shelf/Rust/etc/learn-druid/target/debug/deps/keyboard_types-20e6208da1171bee.rmeta: /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/lib.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/code.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/key.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/location.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/modifiers.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/shortcuts.rs
+
+/Users/rbrducki/Utopia/git-projs/Studio/Shelf/Rust/etc/learn-druid/target/debug/deps/keyboard_types-20e6208da1171bee.d: /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/lib.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/code.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/key.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/location.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/modifiers.rs /Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/shortcuts.rs
+
+/Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/lib.rs:
+/Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/code.rs:
+/Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/key.rs:
+/Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/location.rs:
+/Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/modifiers.rs:
+/Users/rbrducki/.cargo/registry/src/index.crates.io-6f17d22bba15001f/keyboard-types-0.6.2/src/shortcuts.rs:
